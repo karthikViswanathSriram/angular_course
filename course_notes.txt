@@ -39,3 +39,5 @@ recipe book:
 	show the item in the recipe
 	recipe detail
 	a model for recipe class
+
+property binding to custom properties: [element]="serverElement" and in server-element component, use @Input() decorator to indicate that the property can be used to accept inputs from other components.
