@@ -1,0 +1,41 @@
+angular is a javascript framework to build reactive single page applications. There is only one single html element in which the elements get replaced with the content during runtime so that the viewer only sees one page all the time but the content changes (refresh button never loads)
+
+ng new my-first-app --no-strict --standalone false --routing false
+change into project and 'ng serve' to open dev server
+app.module.ts -> get component name from declarations -> app.component.ts -> @component({selector: templateUrl: styleUrl:}) keep css and html files in the component declaration.
+selector is used to inject html code of one component into other - called data binding
+index.html is default and there the selector is injected into the body
+[(ngModel)]="<variable name>" on the input tag gets the input and saves it on the variable name which will be output on screen as well
+[(ngModel)] is a directive
+import into  app.module.ts and put in imports selector also
+main.ts -> bootstraps AppModule -> appModule.ts exports AppComponent -> AppComponent has selector which has the html
+new component -> create <name>.component.html and a .ts file. put the selector in the root component or wherever it should be injected
+import it and declare it in the app module
+create new component through cmd line -> ng g c <comp name>
+in a component, we can also put a selector as an attribute. eg selector: '[app-server]'. Now this becomes an attribute that should be added to any html tag. in html, we can use as: <div app-server></div>
+
+string interpolation: {{ data }} \\data should be declared in the ts file. anything that returns a string can be used even functions
+property binding: [property]="data" can be used inside html tags. eg [disabled]="<some expression that evaluates to boolean>". disabled is an html property that changes value due to property binding.
+event binding: (event)="handling"
+two way binding: [(ngModel)]="data"  \\ngModel is an event which also acts like a property
+
+directives act on the dom to perform some function. components are also directives but with a template. usually directives are declared with a attribute selector typing. eg. selector='[some directive]' but can also be declared as a tag.
+directives are declared with a @Directive annotation.
+ngif is a structural directive which means that it changes the dom. so it is referenced as *ngif
+ngif adds the element depending on a condition.
+ngStyle is another built in directive to change style of the tag. [ngStyle]="{backgroundColor: getColor()}"
+ngClass adds a class to the tag based on a condition. [ngClass]="{online: serverStatus==='online'}" online is the class name
+ngFor structural directive used to loop through arrays and add elements accordingly. 
+<app-server *ngFor="let server of servers"></app-server>
+
+angular project - shopping list and recipe book
+root component -> header -> body contains shopping list and recipe book.
+shopping list:
+	show the list
+	edit the list
+	a model for ingredient and how the class should be created
+recipe book:
+	show the list
+	show the item in the recipe
+	recipe detail
+	a model for recipe class
