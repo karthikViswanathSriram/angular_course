@@ -41,3 +41,22 @@ recipe book:
 	a model for recipe class
 
 property binding to custom properties: [element]="serverElement" and in server-element component, use @Input() decorator to indicate that the property can be used to accept inputs from other components.
+custom property binding is used to pass data from parent component to child component.
+
+custom event binding is used to pass data from child component to parent component.
+cockpit has server name and content which is passed as object on clicking the buttons to its parent using eventEmitter.
+	eg. @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+in app-component.html, we bind to this event and call a function as its response.
+	eg. <app-cockpit (serverCreated)="onServerAdded($event)"></app-cockpit>
+onServerAdded() gets the object and pushed into the array which is displayed using *ngFor and each object is passed to app-server-element
+using property binding which renders the object on screen
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+this method of passing events from child to parent and passing the data to another child using property binding works for components that are small distance apart. if distance is very large, then building chain of outputs and inputs becomes very tiring, use services instead
+
+local references: #<some name> in the html tag is used to access the whole element and their values can be passed to ts file using function parameters.
+ViewChild is another way of using local references to get the tag reference from inside the ts file.
+@ViewChild('serverContentInput',{static: true}) serverContentInput: ElementRef
+we can access the value using serverContentInput.nativeElement.value
+
